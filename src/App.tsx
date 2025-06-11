@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import normalImg from "./assets/bonking_1.jpg";
-import punchedImg from "./assets/bonking_2.jpg";
+// import punchedImg from "./assets/bonking_2.jpg";
 
 import catCloseImg from "./assets/cat1.jpg";
 // import catOpenImg from "./assets/cat2.jpg";
