@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import normalImg from "./assets/bonk_1.jpg";
 import punchedImg from "./assets/bonk_2.jpg";
 
@@ -7,9 +7,11 @@ import catOpenImg from "./assets/cat2.jpg";
 
 import punchSound from "./assets/sound effect.mp3";
 import catSound from "./assets/cat_meow.mp3";
+import eatSound from "./assets/eating_sound.mp3";
 
 import staticImg from "./assets/cat_eating_normal.jpg";
 import gifImg from "./assets/cat_eating.gif";
+import "./App.css";
 
 import { Carousel } from "antd";
 
@@ -18,15 +20,31 @@ const App: React.FC = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [isHolding, setIsHolding] = useState(false);
 
+  const holdingSoundRef = useRef<HTMLAudioElement | null>(null);
+
   const handleMouseDown = () => {
     setIsHolding(true);
+
+    const sound = new Audio(eatSound);
+    sound.loop = true; // 🔁 optional if you want looping while holding
+    sound.volume = 1.0;
+    sound.play().catch((err) => {
+      console.warn("Audio play failed:", err);
+    });
+
+    holdingSoundRef.current = sound;
   };
 
   const handleMouseUp = () => {
     setIsHolding(false);
-  };
 
-  // const audioRef = useRef<HTMLAudioElement | null>(null);
+    // ⛔ Stop and reset sound
+    if (holdingSoundRef.current) {
+      holdingSoundRef.current.pause();
+      holdingSoundRef.current.currentTime = 0;
+      holdingSoundRef.current = null;
+    }
+  };
 
   const handleClick = () => {
     // 🔊 Create a NEW audio instance each time
@@ -59,81 +77,38 @@ const App: React.FC = () => {
       <Carousel arrows infinite={true}>
         {/* meme-1 */}
         <div>
-          <div
-            style={{
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              backgroundColor: "#364d79",
-            }}
-            onClick={handleClick}
-          >
+          <div className="carousel-slide" onClick={handleClick}>
             <img
               src={isPunched ? punchedImg : normalImg}
               alt="Punchable"
-              style={{
-                width: "30vw",
-                height: "auto",
-                userSelect: "none",
-                transition: "all 0.1s ease-in-out",
-              }}
+              className="carousel-image"
             />
           </div>
         </div>
 
         {/* meme-2 */}
         <div>
-          <div
-            style={{
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              backgroundColor: "#364d79",
-            }}
-            onClick={handleClickEat}
-          >
+          <div className="carousel-slide" onClick={handleClickEat}>
             <img
               src={isOpened ? catOpenImg : catCloseImg}
-              alt="Punchable"
-              style={{
-                width: "30vw",
-                height: "auto",
-                userSelect: "none",
-                transition: "all 0.1s ease-in-out",
-              }}
+              alt="Cat"
+              className="carousel-image"
             />
           </div>
         </div>
 
         {/* meme-3 */}
-
         <div>
           <div
-            style={{
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              backgroundColor: "#364d79",
-            }}
+            className="carousel-slide"
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
           >
             <img
               src={isHolding ? gifImg : staticImg}
-              alt="Bonk"
-              style={{
-                width: "30vw",
-                height: "auto",
-                userSelect: "none",
-                transition: "all 0.2s ease-in-out",
-              }}
+              alt="Eating"
+              className="carousel-image"
             />
           </div>
         </div>

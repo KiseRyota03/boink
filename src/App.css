@@ -1,0 +1,21 @@
+.carousel-slide {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #364d79;
+}
+
+.carousel-image {
+  width: 30vw;
+  height: auto;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .carousel-image {
+    width: 50vw;
+  }
+}
