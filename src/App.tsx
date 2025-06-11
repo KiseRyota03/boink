@@ -2,8 +2,8 @@ import React, { useState, useRef } from "react";
 import normalImg from "./assets/bonking_1.jpg";
 import punchedImg from "./assets/bonking_2.jpg";
 
-import catCloseImg from "./assets/catClose.jpg";
-import catOpenImg from "./assets/catOpen.jpg";
+import catCloseImg from "./assets/cat1.jpg";
+// import catOpenImg from "./assets/cat2.jpg";
 
 import punchSound from "./assets/sound effect.mp3";
 import catSound from "./assets/cat_meow.mp3";
@@ -22,6 +22,11 @@ const App: React.FC = () => {
 
   const holdingSoundRef = useRef<HTMLAudioElement | null>(null);
 
+  const catOpenImgAlt =
+    "https://aurasigma.netlify.app/assets/catopen-dod3qclp.jpg";
+
+  const punchedImgAlt =
+    "https://aurasigma.netlify.app/assets/bonking_2-b20ihor3.jpg";
   const handleMouseDown = () => {
     setIsHolding(true);
 
@@ -79,7 +84,7 @@ const App: React.FC = () => {
         <div>
           <div className="carousel-slide" onClick={handleClick}>
             <img
-              src={isPunched ? punchedImg : normalImg}
+              src={isPunched ? punchedImgAlt : normalImg}
               alt="Punchable"
               className="carousel-image"
             />
@@ -90,7 +95,7 @@ const App: React.FC = () => {
         <div>
           <div className="carousel-slide" onClick={handleClickEat}>
             <img
-              src={isOpened ? catOpenImg : catCloseImg}
+              src={isOpened ? catOpenImgAlt : catCloseImg}
               alt="Cat"
               className="carousel-image"
             />
