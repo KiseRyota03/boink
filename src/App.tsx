@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
-import normalImg from "./assets/bonk_1.jpg";
-import punchedImg from "./assets/bonk_2.jpg";
+import normalImg from "./assets/bonking_1.jpg";
+import punchedImg from "./assets/bonking_2.jpg";
 
-import catCloseImg from "./assets/cat1.jpg";
-import catOpenImg from "./assets/cat2.jpg";
+import catCloseImg from "./assets/catClose.jpg";
+import catOpenImg from "./assets/catOpen.jpg";
 
 import punchSound from "./assets/sound effect.mp3";
 import catSound from "./assets/cat_meow.mp3";
