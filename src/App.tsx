@@ -22,6 +22,29 @@ const App: React.FC = () => {
 
   const holdingSoundRef = useRef<HTMLAudioElement | null>(null);
 
+  const handleHoldStart = () => {
+    setIsHolding(true);
+
+    const sound = new Audio(eatSound);
+    sound.loop = true;
+    sound.volume = 1.0;
+    sound.play().catch((err) => {
+      console.warn("Audio play failed:", err);
+    });
+
+    holdingSoundRef.current = sound;
+  };
+
+  const handleHoldEnd = () => {
+    setIsHolding(false);
+
+    if (holdingSoundRef.current) {
+      holdingSoundRef.current.pause();
+      holdingSoundRef.current.currentTime = 0;
+      holdingSoundRef.current = null;
+    }
+  };
+
   const handleMouseDown = () => {
     setIsHolding(true);
 
@@ -108,6 +131,9 @@ const App: React.FC = () => {
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
+            onTouchStart={handleHoldStart} // ✅ Added for mobile
+            onTouchEnd={handleHoldEnd} // ✅ Added for mobile
+            onTouchCancel={handleHoldEnd} // ✅ Added fallback
           >
             <img
               src={isHolding ? gifImg : staticImg}
