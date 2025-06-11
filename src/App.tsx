@@ -23,10 +23,10 @@ const App: React.FC = () => {
   const holdingSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const catOpenImgAlt =
-    "https://aurasigma.netlify.app/assets/catopen-dod3qclp.jpg";
+    "https://raw.githubusercontent.com/KiseRyota03/boink/refs/heads/main/src/assets/cat2.jpg?token=GHSAT0AAAAAADDS46FSMNCI6GXXUQMM6P562CJCEMQ";
 
   const punchedImgAlt =
-    "https://aurasigma.netlify.app/assets/bonking_2-b20ihor3.jpg";
+    "https://raw.githubusercontent.com/KiseRyota03/boink/refs/heads/main/src/assets/bonking_2.jpg?token=GHSAT0AAAAAADDS46FTCSEOR6SSUS3XZLD62CJCDGA";
   const handleMouseDown = () => {
     setIsHolding(true);
 
