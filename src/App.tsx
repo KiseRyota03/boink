@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import normalImg from "./assets/bonking_1.jpg";
-// import punchedImg from "./assets/bonking_2.jpg";
+import punchedImg from "./assets/bonking_2.jpg";
 
 import catCloseImg from "./assets/cat1.jpg";
-// import catOpenImg from "./assets/cat2.jpg";
+import catOpenImg from "./assets/cat2.jpg";
 
 import punchSound from "./assets/sound effect.mp3";
 import catSound from "./assets/cat_meow.mp3";
@@ -22,11 +22,6 @@ const App: React.FC = () => {
 
   const holdingSoundRef = useRef<HTMLAudioElement | null>(null);
 
-  const catOpenImgAlt =
-    "https://raw.githubusercontent.com/KiseRyota03/boink/refs/heads/main/src/assets/cat2.jpg?token=GHSAT0AAAAAADDS46FSMNCI6GXXUQMM6P562CJCEMQ";
-
-  const punchedImgAlt =
-    "https://raw.githubusercontent.com/KiseRyota03/boink/refs/heads/main/src/assets/bonking_2.jpg?token=GHSAT0AAAAAADDS46FTCSEOR6SSUS3XZLD62CJCDGA";
   const handleMouseDown = () => {
     setIsHolding(true);
 
@@ -79,12 +74,16 @@ const App: React.FC = () => {
 
   return (
     <div>
+      {/* Preload all possible images (not shown at first) */}
+      <img src={punchedImg} style={{ display: "none" }} alt="preload" />
+      <img src={catOpenImg} style={{ display: "none" }} alt="preload" />
+      <img src={gifImg} style={{ display: "none" }} alt="preload" />
       <Carousel arrows infinite={true}>
         {/* meme-1 */}
         <div>
           <div className="carousel-slide" onClick={handleClick}>
             <img
-              src={isPunched ? punchedImgAlt : normalImg}
+              src={isPunched ? punchedImg : normalImg}
               alt="Punchable"
               className="carousel-image"
             />
@@ -95,7 +94,7 @@ const App: React.FC = () => {
         <div>
           <div className="carousel-slide" onClick={handleClickEat}>
             <img
-              src={isOpened ? catOpenImgAlt : catCloseImg}
+              src={isOpened ? catOpenImg : catCloseImg}
               alt="Cat"
               className="carousel-image"
             />
